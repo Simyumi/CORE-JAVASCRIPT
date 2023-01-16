@@ -10,6 +10,7 @@ import {
   insertLast,
   visibleElement,
   invisibleElement,
+  memo,
   attr
  } from "./lib/index.js";
 
@@ -33,6 +34,14 @@ import {
 // 3. 템플릿 뿌리기 
 
 
+// [ 초기화 시키기 ]
+// 1. clearContent 로 정보 지우기
+// 2. total, count 초기화 
+// 3. 스크롤 밑으로 보내기 
+// 4. 메모이제이션 패턴 
+
+
+
 
 // 배열의 구조 분해 할당 
 const [rollingDiceButton,recordButton,resetButton] = getNodes('.buttonGroup > button');
@@ -40,15 +49,25 @@ const [rollingDiceButton,recordButton,resetButton] = getNodes('.buttonGroup > bu
 const recordListWrapper = getNode('.recordListWrapper')
 
 
+memo('@tbody',()=>getNode('.recordListWrapper tbody'));
+
+
+
 // 특정 대상의 속성값을 가져오거나 / 설정할 수 있는 함수 
 
 
+/* -------------------------------------------------------------------------- */
+/* render                                                                     */
+/* -------------------------------------------------------------------------- */
+
 let count = 0;
 let total = 0;
+// redux
+// mobx
 
 function renderRecordListItem(){
   
-  let diceValue = Number(attr('#cube','data-dice'));
+  let diceValue = Number(attr(memo('cube'),'data-dice'));
 
   let template = /* html */ `
     <tr>
@@ -58,7 +77,7 @@ function renderRecordListItem(){
     </tr>
   `
   
-  insertLast('.recordListWrapper tbody',template)
+  insertLast(memo('@tbody'),template)
   recordListWrapper.scrollTop = recordListWrapper.scrollHeight
 }
 
@@ -96,22 +115,22 @@ const handleRollingDice = (() => {
 
 })()
 
-
 const handleRecord =()=>{
   
   visibleElement(recordListWrapper);
   renderRecordListItem();
+
 }
 
 const handleReset = () => {
 
-  invisibleElement(recordListWrapper);
+  count = 0;
+  total = 0;
 
-  clearContents('.recordListWrapper tbody')
+  invisibleElement(recordListWrapper);
+  clearContents(memo('@tbody'))
 
 }
-
-
 
 rollingDiceButton.addEventListener('click',handleRollingDice)
 recordButton.addEventListener('click',handleRecord)
