@@ -154,14 +154,12 @@ async function 라면끓이기(){
       console.log(err);
   }
 
-
-
 }
 
 
 
 
-라면끓이기()
+// 라면끓이기()
 
 
 
