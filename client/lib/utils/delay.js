@@ -107,6 +107,36 @@ export function delayP(options = {}){
 
 
 
+async function delayA(){
+  return '완료'
+}
+
+
+let result = await delayA()
+
+
+
+console.log(result);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
