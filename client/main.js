@@ -5,8 +5,10 @@
 import { 
   xhrData,
   insertLast,
-  xhrPromise
+  xhrPromise,
+  tiger
  } from "./lib/index.js";
+
 
 
 

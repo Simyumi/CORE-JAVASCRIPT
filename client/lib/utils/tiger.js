@@ -16,9 +16,7 @@ const defaultOptions = {
 
 
 
-const tiger = async (options = {}) =>{
-  
-
+export const tiger = async (options = {}) =>{
 
   const {url, ...restOptions} = {
     ...defaultOptions,
@@ -26,8 +24,6 @@ const tiger = async (options = {}) =>{
     headers: {...defaultOptions.headers, ...options.headers}
   }
 
-  console.log(restOptions);
-  
 
   let response = await fetch(url,restOptions)
 
@@ -41,9 +37,51 @@ const tiger = async (options = {}) =>{
 }
 
 
-// tiger({
 
-// })
+tiger.get = (url,options) => {
+  tiger({
+    url,
+    ...options
+  })
+}
+
+tiger.post = (url,body,options) =>{
+  tiger({
+    method:'POST',
+    url,
+    body:JSON.stringify(body),
+    ...options
+  })
+}
+
+tiger.put = (url,body,options) =>{
+  tiger({
+    method:'PUT',
+    url,
+    body:JSON.stringify(body),
+    ...options
+  })
+}
+
+tiger.delete = (url,options) =>{
+  tiger({
+    method:'DELETE',
+    url,
+    ...options
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
