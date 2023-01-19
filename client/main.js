@@ -22,12 +22,19 @@ const userCardContainer = getNode('.user-card-inner');
 async function rendingUserList() {
 
   let response = await tiger.get(
-    'https://jsonplaceholder.typicode.com/users/1'
+    'https://jsonplaceholder.typicode.com/users'
   );
 
   let userData = response.data;
 
-  renderUserCard(userCardContainer,userData)
+  // userData.forEach(data=> renderUserCard(userCardContainer,data))
+  userData.forEach((data)=> {
+    renderUserCard(userCardContainer,data)
+  })
+
+  
+  
+  // 객체 하나만 받아서 랜더링
 
 }
 

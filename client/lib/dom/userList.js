@@ -29,6 +29,7 @@ const createUserCard = ({
 
 
 export const renderUserCard = (target,data) => {
+  
   insertLast(target, createUserCard(data));
 }
 
