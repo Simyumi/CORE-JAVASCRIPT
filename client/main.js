@@ -79,7 +79,10 @@ function handler(e){
    
   let id = attr(article,'data-index').slice(5);
 
-  tiger.delete(`http://localhost:3000/users/${id}`)
+  tiger.delete(`http://localhost:3000/users/${id}`).then(()=>{
+    userCardContainer.innerHTML = '';
+    rendingUserList();
+  })
   
   
 }
