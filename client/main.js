@@ -3,14 +3,15 @@
 
 
 import {
+  attr,
   tiger,
   delayP,
-  getNode as $,
   insertLast,
   changeColor,
+  getNode as $,
   renderSpinner,
   renderUserCard,
-  renderEmptyCard
+  renderEmptyCard,
 } from './lib/index.js';
 
 // rendingUserList 함수 만들기
@@ -23,6 +24,8 @@ import {
 //  2. renderUserCard 함수를 만들기
 //  3. 만들어진 함수 안에 createUserCard를 던지고,
 //  4. renderUserCard함수를 사용했을 때  랜더링이 잘 될 수 있도록.
+
+
 
 const userCardContainer = $('.user-card-inner');
 
@@ -62,6 +65,25 @@ rendingUserList();
 
 
 
+// 삭제 버튼을 클릭하면 콘솔창에 '삭제' 글자가 출력이 될 수 있도록 만들어 주세요.
+
+
+
+function handler(e){
+  let deleteButton = e.target.closest('button');
+  let article = e.target.closest('article');
+
+  if(!deleteButton || !article) return;
+
+   
+  let id = attr(article,'data-index').slice(5);
+
+  console.log(id);
+  
+}
+
+
+userCardContainer.addEventListener('click',handler)
 
 
 
