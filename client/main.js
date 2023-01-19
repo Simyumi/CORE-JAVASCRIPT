@@ -79,12 +79,18 @@ function handler(e){
    
   let id = attr(article,'data-index').slice(5);
 
+  // await tiger.delete(`http://localhost:3000/users/${id}`)
+
+  // userCardContainer.innerHTML = '';
+  // rendingUserList();
+
+
+
+
   tiger.delete(`http://localhost:3000/users/${id}`).then(()=>{
     userCardContainer.innerHTML = '';
     rendingUserList();
   })
-  
-  
 }
 
 
