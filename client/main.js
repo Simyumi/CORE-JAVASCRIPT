@@ -38,7 +38,7 @@ async function rendingUserList() {
 
     $('.loadingSpinner').remove();
 
-    let response = await tiger.get( 'https://jsonplaceholder.typicode.com/users' );
+    let response = await tiger.get( 'http://localhost:3000/users' );
   
     let userData = response.data;
     // userData.forEach(data=> renderUserCard(userCardContainer,data))
@@ -72,13 +72,15 @@ rendingUserList();
 function handler(e){
   let deleteButton = e.target.closest('button');
   let article = e.target.closest('article');
-
-  if(!deleteButton || !article) return;
+  
+  if(!deleteButton || !article) return; // 버튼이 아니면 실행 안함 
+  // if(!article) return; // 누른 대상의 인접한 대상이 article이 아니면 실행 안함.
 
    
   let id = attr(article,'data-index').slice(5);
 
-  console.log(id);
+  tiger.delete(`http://localhost:3000/users/${id}`)
+  
   
 }
 
